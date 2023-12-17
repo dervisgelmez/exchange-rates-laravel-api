@@ -73,7 +73,7 @@ final class UserController extends ApiBaseController
                 'id' => $userId
             ])
         )->with(['requestLogs' => function ($query) {
-            $query->limit(1);
+            $query->limit(5);
             $query->orderBy('created_at', 'desc');
         }])->first();
 
