@@ -34,8 +34,10 @@ class FetchExchangeRatesCommand extends Command
         ExchangeRatesService $exchangeRatesService
     ): void
     {
+        $nowDate = Carbon::now();
+
         $this->newLine();
-        $this->line("💥 Process start ". Carbon::now());
+        $this->line("💥 Process start ". $nowDate);
         $this->newLine();
 
         $this->line('⏳️ Fetching data...');
@@ -54,6 +56,10 @@ class FetchExchangeRatesCommand extends Command
         }
 
         $this->newLine();
+        $exchangeRatesService->clearExpiredExchangeRatesItems($nowDate);
+        $this->line('🧹 Cleared expired past exchange rates items');
+        $this->newLine();
+
         $this->info("✅ Completed process ". Carbon::now());
     }
 }

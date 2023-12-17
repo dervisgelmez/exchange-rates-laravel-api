@@ -4,6 +4,7 @@ namespace App\Services\Core;
 
 use App\Models\ExchangeRate;
 use App\Types\ExchangeRates\ExchangeRatesItemType;
+use Carbon\Carbon;
 
 final class ExchangeRatesService
 {
@@ -20,5 +21,14 @@ final class ExchangeRatesService
             'rate_buy' => $item->getRateBuy(),
             'rate_sell' => $item->getRateSell()
         ]);
+    }
+
+    /**
+     * @param Carbon $fromDate
+     * @return void
+     */
+    public function clearExpiredExchangeRatesItems(Carbon $fromDate): void
+    {
+        ExchangeRate::where('created_at', '<', $fromDate)->delete();
     }
 }
