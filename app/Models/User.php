@@ -51,4 +51,12 @@ class User extends Authenticatable
     {
         return $this->role === 'ROLE_ADMIN';
     }
+
+    /**
+     * @return HasMany
+     */
+    public function requestLogs(): HasMany
+    {
+        return $this->hasMany(UserRequestLog::class);
+    }
 }
