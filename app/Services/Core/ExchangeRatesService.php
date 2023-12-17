@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 
-final class ExchangeRatesService
+class ExchangeRatesService
 {
     /**
      * @param ExchangeRatesItemType $item
