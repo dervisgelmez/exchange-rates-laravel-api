@@ -2,7 +2,6 @@
 
 namespace App\Traits;
 
-use App\Services\Cache\RequestCacheService;
 use Illuminate\Http\JsonResponse;
 
 trait ApiResponseTrait

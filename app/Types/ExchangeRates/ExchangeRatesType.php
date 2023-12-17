@@ -19,9 +19,6 @@ class ExchangeRatesType
         $this->providerName = $providerName;
     }
 
-    /**
-     * @return string
-     */
     public function __toString(): string
     {
         return (string)count($this->exchangeRatesItems);

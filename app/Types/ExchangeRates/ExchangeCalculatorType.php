@@ -14,9 +14,6 @@ class ExchangeCalculatorType
 
     private float $amount;
 
-    /**
-     * @return string
-     */
     public function __toString(): string
     {
         return "{$this->amount} {$this->fromCode} is {$this->calculate()} {$this->toCode}";
@@ -72,9 +69,6 @@ class ExchangeCalculatorType
         $this->amount = $amount;
     }
 
-    /**
-     * @return float
-     */
     public function calculate(): float
     {
         return $this->fromRate * $this->amount / $this->toRate;

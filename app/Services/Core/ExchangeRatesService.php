@@ -100,6 +100,9 @@ final class ExchangeRatesService
         ];
     }
 
+    /**
+     * @return string
+     */
     public function getDefaultCode(): string
     {
         return config('exchangerates.default_code');

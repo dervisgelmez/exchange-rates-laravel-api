@@ -10,6 +10,10 @@ use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 
 final class AuthService
 {
+    /**
+     * @param Request $request
+     * @return array
+     */
     public function loginWithRequest(Request $request): array
     {
         $user = User::where('username', $request->request->get('username'))->first();
