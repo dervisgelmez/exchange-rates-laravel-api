@@ -20,8 +20,26 @@ use Illuminate\Support\Facades\Route;
 | Auth Routes
 |--------------------------------------------------------------------------
 */
-Route::prefix('/auth')->group(function () {
+Route::middleware('auth.admin')->prefix('/auth')->group(function () {
     Route::get('me', [AuthController::class, 'index']);
     Route::post('login', [AuthController::class, 'login']);
     Route::post('register', [UserController::class, 'register']);
+});
+
+/*
+|--------------------------------------------------------------------------
+| Authenticated Routes
+|--------------------------------------------------------------------------
+*/
+Route::middleware('auth:sanctum')->group(function () {
+
+});
+
+/*
+|--------------------------------------------------------------------------
+| Admin authenticated Routes
+|--------------------------------------------------------------------------
+*/
+Route::middleware('auth.admin')->group(function () {
+
 });
