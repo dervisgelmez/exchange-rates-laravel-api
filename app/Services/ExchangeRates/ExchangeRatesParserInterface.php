@@ -2,6 +2,8 @@
 
 namespace App\Services\ExchangeRates;
 
+use App\Types\ExchangeRates\ExchangeRatesType;
+
 interface ExchangeRatesParserInterface
 {
     /**
@@ -35,7 +37,7 @@ interface ExchangeRatesParserInterface
     public function parseBody($response): array;
 
     /**
-     * @return array
+     * @return ExchangeRatesType
      */
-    public function getRates(): array;
+    public function getRates(): ExchangeRatesType;
 }

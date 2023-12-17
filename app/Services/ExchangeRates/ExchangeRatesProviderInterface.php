@@ -13,9 +13,4 @@ interface ExchangeRatesProviderInterface
      * @return array
      */
     public function getAllowedCodes(): array;
-
-    /**
-     * @return array
-     */
-    public function getRates(): array;
 }

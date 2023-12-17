@@ -7,6 +7,8 @@ use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\TransferException;
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Request;
+use App\Types\ExchangeRates\ExchangeRatesType;
+use App\Types\ExchangeRates\ExchangeRatesItemType;
 
 abstract class ExchangeRatesAbstract implements ExchangeRatesRequestInterface, ExchangeRatesProviderInterface, ExchangeRatesParserInterface
 {
@@ -40,12 +42,24 @@ abstract class ExchangeRatesAbstract implements ExchangeRatesRequestInterface, E
         return $response;
     }
 
-    public function getRates(): array
+    /**
+     * @return ExchangeRatesType
+     */
+    public function getRates(): ExchangeRatesType
     {
-        $response = [];
+        $exchangeRatesResponse = new ExchangeRatesType($this->getName());
         foreach ($this->fetch() as $item) {
-           $response[] = $item;
+            if (in_array($this->parseCode($item), $this->getAllowedCodes())) {
+                $exchangeRatesResponse->addExchangeRatesItem(
+                    ExchangeRatesItemType::fill(
+                        $this->parseCode($item),
+                        $this->parseDescription($item),
+                        $this->parseRateBuy($item),
+                        $this->parseRateSell($item)
+                    )
+                );
+            }
         }
-        return $response;
+        return $exchangeRatesResponse;
     }
 }
