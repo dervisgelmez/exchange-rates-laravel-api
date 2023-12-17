@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Services\Core\UserService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 final class UserController extends ApiBaseController
 {
@@ -58,7 +59,7 @@ final class UserController extends ApiBaseController
      */
     public function user(int $userId, UserService $userService): JsonResponse
     {
-        $users = $userService->getUsers(
+        $user = $userService->getUsers(
             new Request([
                 'role' => User::USER_ROLE,
                 'id' => $userId
@@ -66,8 +67,12 @@ final class UserController extends ApiBaseController
         )->with(['requestLogs' => function ($query) {
             $query->limit(1);
             $query->orderBy('created_at', 'desc');
-        }]);
+        }])->first();
 
-        return $this->successResponse($users->first()->toArray());
+        if (!$user) {
+            throw new NotFoundHttpException('USER_NOT_FOUND');
+        }
+
+        return $this->successResponse($user->toArray());
     }
 }
