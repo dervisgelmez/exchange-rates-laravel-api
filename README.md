@@ -1,6 +1,19 @@
 # Laravel Exchange Rates API Project
 
-This project is a Currency Exchange API developed using Laravel 10 and PHP 8.1.
+This project is a Exchange Rates API developed using Laravel 10 and PHP 8.1.
+
+----
+## Documents
+
+### Flowchart
+
+View the project's flowchart [here](resources/document/).
+
+### Postman Collection
+
+Download the Postman collection and env for the API [here](resources/document/postman).
+
+---
 
 ## Installation
 
@@ -41,6 +54,8 @@ To get started with the project, follow these steps:
     php artisan test --env=test
     ```
 
+---
+
 ## Project Features
 
 - You can extend the project by inheriting from the `ExchangeRatesAbstract` class, allowing easy addition of multiple currency exchange APIs. Simply fill in the required fields for a new provider.
@@ -48,14 +63,6 @@ To get started with the project, follow these steps:
 - Utilizes a response cache structure with Redis.
 
 - Logs user requests.
-
-## Flowchart
-
-View the project's flowchart [here](resources/document/).
-
-## Postman Collection
-
-Download the Postman collection and env for the API [here](resources/document/postman).
 
 ## License
 
