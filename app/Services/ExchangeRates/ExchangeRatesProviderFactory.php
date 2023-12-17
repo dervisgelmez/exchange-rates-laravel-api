@@ -5,7 +5,7 @@ namespace App\Services\ExchangeRates;
 use App\Types\ExchangeRates\ExchangeRatesType;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class ExchangeRatesProviderFactory
+final class ExchangeRatesProviderFactory
 {
     /**
      * @var ExchangeRatesAbstract[] $providers

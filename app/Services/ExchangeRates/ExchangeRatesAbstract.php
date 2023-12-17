@@ -12,6 +12,11 @@ use App\Types\ExchangeRates\ExchangeRatesItemType;
 
 abstract class ExchangeRatesAbstract implements ExchangeRatesRequestInterface, ExchangeRatesProviderInterface, ExchangeRatesParserInterface
 {
+    public function __toString(): string
+    {
+        return $this->getName();
+    }
+
     public function getAllowedCodes(): array
     {
         return config('exchangerates.allowed_codes');

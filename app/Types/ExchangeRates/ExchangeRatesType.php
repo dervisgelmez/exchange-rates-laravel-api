@@ -19,6 +19,14 @@ class ExchangeRatesType
         $this->providerName = $providerName;
     }
 
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return (string)count($this->exchangeRatesItems);
+    }
+
     public function getProviderName(): string
     {
         return $this->providerName;
@@ -36,6 +44,7 @@ class ExchangeRatesType
 
     public function addExchangeRatesItem(ExchangeRatesItemType $exchangeRatesItem): void
     {
+        $exchangeRatesItem->setProviderName($this->getProviderName());
         $this->exchangeRatesItems[] = $exchangeRatesItem;
     }
 }

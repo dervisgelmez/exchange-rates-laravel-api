@@ -7,6 +7,11 @@ interface ExchangeRatesProviderInterface
     /**
      * @return string
      */
+    public function __toString(): string;
+
+    /**
+     * @return string
+     */
     public function getName(): string;
 
     /**

@@ -6,6 +6,8 @@ class ExchangeRatesItemType
 {
     private string $code;
 
+    private string $providerName;
+
     private ?string $description;
 
     private float $rateBuy;
@@ -27,16 +29,6 @@ class ExchangeRatesItemType
         return $type;
     }
 
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(?string $description): void
-    {
-        $this->description = $description;
-    }
-
     public function getCode(): string
     {
         return $this->code;
@@ -45,6 +37,26 @@ class ExchangeRatesItemType
     public function setCode(string $code): void
     {
         $this->code = $code;
+    }
+
+    public function getProviderName(): string
+    {
+        return $this->providerName;
+    }
+
+    public function setProviderName(string $providerName): void
+    {
+        $this->providerName = $providerName;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): void
+    {
+        $this->description = $description;
     }
 
     public function getRateBuy(): float
