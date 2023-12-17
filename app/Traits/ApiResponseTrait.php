@@ -14,7 +14,7 @@ trait ApiResponseTrait
      */
     protected function successResponse(
         array $data,
-        mixed $message = null,
+        ?string $message = null,
         int $code = 200
     ): JsonResponse
     {
@@ -32,7 +32,7 @@ trait ApiResponseTrait
      */
     protected function errorResponse(
         int $code,
-        mixed $message = null
+        string $message
     ): JsonResponse
     {
         return response()->json([
