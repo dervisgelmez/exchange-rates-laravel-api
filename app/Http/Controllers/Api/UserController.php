@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\ApiBaseController;
 use App\Models\User;
+use App\Services\Cache\RequestCacheService;
 use App\Services\Core\UserService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -45,11 +46,18 @@ final class UserController extends ApiBaseController
      */
     public function index(Request $request, UserService $userService): JsonResponse
     {
-        $users = $userService->getUsers(new Request(['role' => User::USER_ROLE]));
+        if (RequestCacheService::hashCache($request)) {
+            return $this->successResponse(
+                RequestCacheService::getCache($request)
+            );
+        }
 
-        return $this->successResponse(
-            $users->paginate($request->query->get('count', 15))->toArray()
-        );
+        $users = $userService->getUsers(new Request(['role' => User::USER_ROLE]));
+        $response = $users->paginate($request->query->get('count', 15))->toArray();
+
+        RequestCacheService::saveCache($request, $response);
+
+        return $this->successResponse($response);
     }
 
     /**

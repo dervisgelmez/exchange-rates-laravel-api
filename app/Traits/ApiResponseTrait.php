@@ -2,25 +2,24 @@
 
 namespace App\Traits;
 
+use App\Services\Cache\RequestCacheService;
 use Illuminate\Http\JsonResponse;
 
 trait ApiResponseTrait
 {
     /**
      * @param array $data
-     * @param mixed|null $message
      * @param int $code
      * @return JsonResponse
      */
     protected function successResponse(
         array $data,
-        ?string $message = null,
         int $code = 200
     ): JsonResponse
     {
         return response()->json([
             'success'  => true,
-            'message' => $message,
+            'message' => null,
             'data'    => $data
         ], $code);
     }
