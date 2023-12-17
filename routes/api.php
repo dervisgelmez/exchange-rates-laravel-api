@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ExchangeRatesController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\UserRequestLogController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -47,6 +48,11 @@ Route::middleware('auth:sanctum')->group(function () {
 */
 Route::middleware('auth.admin')->group(function () {
     Route::prefix('/admin')->group(function () {
-
+        Route::prefix('/users')->group(function () {
+            Route::get('/', [UserController::class, 'index']);
+            Route::get('/logs', [UserRequestLogController::class, 'index']);
+            Route::get('/{id}', [UserController::class, 'user']);
+            Route::get('/{id}/logs', [UserRequestLogController::class, 'getLogsByUser']);
+        });
     });
 });

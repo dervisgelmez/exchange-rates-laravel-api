@@ -34,7 +34,7 @@ final class ExchangeRatesService
      */
     public function clearExpiredExchangeRatesItems(Carbon $fromDate): void
     {
-        ExchangeRate::where('created_at', '<', $fromDate)->delete();
+        ExchangeRate::query()->where('created_at', '<', $fromDate)->delete();
     }
 
     /**
@@ -58,7 +58,7 @@ final class ExchangeRatesService
      */
     public function search(Request $request): Builder
     {
-        $exchangeRates = ExchangeRate::where("created_at", ">=", Carbon::now()->subMinutes(15)->toDateTimeString());
+        $exchangeRates = ExchangeRate::query()->where("created_at", ">=", Carbon::now()->subMinutes(15)->toDateTimeString());
         if ($request->query->get('code')) {
             $exchangeRates->where(DB::raw('LOWER(code)'), '=', strtolower($request->input('code')));
         }

@@ -23,6 +23,11 @@ final class ExchangeRatesController extends ApiBaseController
         );
     }
 
+    /**
+     * @param Request $request
+     * @param ExchangeRatesService $exchangeRatesService
+     * @return JsonResponse
+     */
     public function calculate(Request $request, ExchangeRatesService $exchangeRatesService): JsonResponse
     {
         $validatableCodesString = implode(',', $exchangeRatesService->getValidatableCodes());
