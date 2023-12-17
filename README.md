@@ -36,6 +36,8 @@ To get started with the project, follow these steps:
 6. Run tests:
     ```bash
     php artisan migrate --env=test
+    ```
+    ```bash
     php artisan test --env=test
     ```
 
