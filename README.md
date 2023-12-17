@@ -16,18 +16,24 @@ To get started with the project, follow these steps:
     composer install
     ```
 
-3. Add an admin user:
+3. Database migrations
+    ```bash
+    php artisan migrate
+    ```
+
+4. Add an admin user:
     ```bash
     php artisan db:seed
     ```
 
-4. Fetch exchange rates:
+5. Fetch exchange rates:
     ```bash
     php artisan fetch:exchange-rates
     ```
 
-5. Run tests:
+6. Run tests:
     ```bash
+    php artisan migrate --env=test
     php artisan test --env=test
     ```
 
