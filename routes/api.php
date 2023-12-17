@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\ExchangeRatesController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,9 +22,9 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 Route::prefix('/auth')->group(function () {
-    Route::get('me', [AuthController::class, 'index']);
-    Route::post('login', [AuthController::class, 'login']);
-    Route::post('register', [UserController::class, 'register']);
+    Route::get('/me', [AuthController::class, 'index']);
+    Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/register', [UserController::class, 'register']);
 });
 
 /*
@@ -33,6 +34,10 @@ Route::prefix('/auth')->group(function () {
 */
 Route::middleware('auth:sanctum')->group(function () {
 
+    Route::prefix('/exchange-rates')->group(function () {
+        Route::get('/', [ExchangeRatesController::class, 'index']);
+        Route::post('/calculate', [ExchangeRatesController::class, 'calculate']);
+    });
 });
 
 /*
@@ -41,5 +46,7 @@ Route::middleware('auth:sanctum')->group(function () {
 |--------------------------------------------------------------------------
 */
 Route::middleware('auth.admin')->group(function () {
+    Route::prefix('/admin')->group(function () {
 
+    });
 });
