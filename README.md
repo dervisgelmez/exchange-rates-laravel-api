@@ -25,6 +25,8 @@ To get started with the project, follow these steps:
     ```bash
     php artisan db:seed
     ```
+   `username="admin" & password="Admin123!"`
+
 
 5. Fetch exchange rates:
     ```bash
