@@ -63,7 +63,7 @@ final class UserController extends ApiBaseController
                 'role' => User::USER_ROLE,
                 'id' => $userId
             ])
-        )->with(['activityLogs' => function ($query) {
+        )->with(['requestLogs' => function ($query) {
             $query->limit(1);
             $query->orderBy('created_at', 'desc');
         }]);
