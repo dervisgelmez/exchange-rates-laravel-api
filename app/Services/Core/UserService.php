@@ -34,6 +34,9 @@ final class UserService
         if ($role = $request->query->get('role')) {
             $userBuilder->where('role', '=', $role);
         }
+        if ($userId = $request->query->get('id')) {
+            $userBuilder->where('id', '=', $userId);
+        }
 
         return $userBuilder;
     }
