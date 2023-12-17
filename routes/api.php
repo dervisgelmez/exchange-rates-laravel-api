@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 | Auth Routes
 |--------------------------------------------------------------------------
 */
-Route::middleware('auth.admin')->prefix('/auth')->group(function () {
+Route::prefix('/auth')->group(function () {
     Route::get('me', [AuthController::class, 'index']);
     Route::post('login', [AuthController::class, 'login']);
     Route::post('register', [UserController::class, 'register']);
