@@ -41,11 +41,11 @@ To get started with the project, follow these steps:
 
 ## Flowchart
 
-View the project's flowchart [here](resource/document/).
+View the project's flowchart [here](resources/document/).
 
 ## Postman Collection
 
-Download the Postman collection for the API [here](resource/document/postman).
+Download the Postman collection and env for the API [here](resources/document/postman).
 
 ## License
 
